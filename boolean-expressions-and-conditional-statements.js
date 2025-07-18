@@ -50,3 +50,38 @@ Add Customization and expand the game:
   - Use nested conditionals and logical operators to create complex outcomes.
 
 */
+
+const hasSword = true;
+const hasCompass = true;
+
+const nextChoice = readline.question("\nYou spot a fork in the road. Do you go 'left' toward the forest or 'right' toward a dark cave? ").toLowerCase();
+
+if (nextChoice === "left") {
+  if (hasCompass) {
+    console.log("You use your compass and stay on the path. You safely make it through the forest.");
+    const helpTraveler = readline.question("You see a traveler in need. Do you help them? (yes/no) ").toLowerCase();
+    if (helpTraveler === "yes" && hasSword) {
+      console.log("You help the traveler fight off a thief. They thank you and give you a magic map!");
+    } else {
+      console.log("You keep walking. The traveler shouts something at you, but you ignore it.");
+    }
+  } else {
+    console.log("You wander into the forest without a compass and quickly get lost.");
+  }
+} else if (nextChoice === "right") {
+  if (!hasTorch) {
+    console.log("The cave is too dark to enter. You turn around.");
+  } else {
+    console.log("You enter the cave with your torch. A wild creature appears!");
+    const fightCreature = readline.question("Do you fight the creature? (yes/no) ").toLowerCase();
+    if (fightCreature === "yes" && hasSword) {
+      console.log("You bravely defeat the creature and find treasure!");
+    } else if (fightCreature === "yes" && !hasSword) {
+      console.log("You try to fight, but without a sword, you lose the battle.");
+    } else {
+      console.log("You run away safely and escape the cave.");
+    }
+  }
+} else {
+  console.log("You stand still, unsure of what to do next.");
+}
